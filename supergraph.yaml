@@ -1,0 +1,14 @@
+federation_version: =2.10.0
+subgraphs:
+  claims:
+    routing_url: http://localhost # this value is ignored
+    schema:
+      file: claims.graphql
+  policies:
+    routing_url: http://localhost # this value is ignored
+    schema:
+      file: policies.graphql
+  policyholder:
+    routing_url: http://localhost # this value is ignored
+    schema:
+      file: policyholder.graphql

@@ -1,0 +1,22 @@
+type Policyholder @key(fields: "id") {
+  id: ID!
+  name: String!
+  emailAddress: String
+  phoneNumber: String
+  dateOfBirth: String!
+  policies: [Policy]
+  claims: [Claim]
+}
+
+type Policy @key(fields: "id") {
+  id: ID! 
+}
+
+type Claim @key(fields: "id") {
+  id: ID! 
+}
+
+type Query {
+  policyholder(id: ID!): Policyholder
+  policyholdersByName(name: String!): [Policyholder!]!
+}
