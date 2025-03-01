@@ -1,0 +1,20 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  # Secrets aren't available on entry points
+  entrypoint: 'bash'
+  args: [
+    '-c',
+    'docker build -t gcr.io/federation-workshop/claims --build-arg SUBGRAPH_DIR=subgraphs/claims .'
+  ]
+
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/federation-workshop/claims']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'subgraph-claims', '--image', 'gcr.io/federation-workshop/claims','--allow-unauthenticated', '--region', 'us-east1']
+
+images:
+- gcr.io/federation-workshop/claims

@@ -1,13 +1,3 @@
-const gql = require("graphql-tag");
-const { readFileSync } = require("fs");
-const { ApolloServer } = require("@apollo/server");
-const { buildSubgraphSchema } = require("@apollo/subgraph");
-const { startStandaloneServer } = require("@apollo/server/standalone");
-
-const resolvers = require("./resolvers");
-const port = process.env.PORT ?? 4002;
-const subgraphName = require("../package.json").name;
-
 const claims = [
     {
       id: "1",
@@ -59,24 +49,20 @@ const claims = [
     },
   ];
   
+  // Resolvers
+const resolvers = {
+    Query: {
+      claim: (_, { id }) => claims.find((claim) => claim.id === id),
+      claimsByPolicy: (_, { policyId }) =>
+        claims.filter((claim) => claim.policy.id === policyId),
+      claimsByPolicyholder: (_, { policyholderId }) =>
+        claims.filter((claim) => claim.policyholder.id === policyholderId),
+    },
+    Claim: {
+      __resolveReference: (claimRef) => claims.find((claimRef) => claim.id === claimRef.id),
+      policy: (claim) => ({ id: claim.policy.id }),
+      policyholder: (claim) => ({ id: claim.policyholder.id }),
+    },
+  };
 
-async function main() {
-  const typeDefs = gql(
-    readFileSync("claims.graphql", {
-      encoding: "utf-8",
-    })
-  );
-  const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs, resolvers }),
-  });
-  const { url } = await startStandaloneServer(server, {
-    listen: { port }
-  });
-
-  console.log(`🚀  Subgraph ready at ${url}`);
-  console.log(
-    `In a new terminal, run 'rover dev --url http://localhost:${port} --name ${subgraphName}`
-  );
-}
-
-main();
+  module.exports = resolvers;

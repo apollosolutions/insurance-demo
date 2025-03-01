@@ -1,0 +1,21 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'gcr.io/federation-workshop/router-v2_0',
+        './router',
+      ]
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/federation-workshop/router-v2_0']
+
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'insurance-router', '--image', 'gcr.io/federation-workshop/router-v2_0','--allow-unauthenticated', 
+      '--region', 'us-east1', '--update-env-vars', 'APOLLO_KEY=${_APOLLO_KEY},APOLLO_GRAPH_REF=${_APOLLO_GRAPH_REF}']
+images:
+  - gcr.io/federation-workshop/router-v2_0
