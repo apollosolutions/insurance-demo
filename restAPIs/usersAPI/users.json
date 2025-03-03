@@ -1,0 +1,242 @@
+[
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "emailAddress": "john.doe@example.com",
+      "phoneNumber": "555-123-4567",
+      "dateOfBirth": "1990-05-15",
+      "policies": [
+        {
+          "id": "101"
+        },
+        {
+          "id": "102"
+        }
+      ],
+      "claims": [
+        {
+          "id": "201"
+        },
+        {
+          "id": "202"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "emailAddress": "alice.smith@example.com",
+      "phoneNumber": "555-987-6543",
+      "dateOfBirth": "1985-11-20",
+      "policies": [
+        {
+          "id": "103"
+        },
+        {
+          "id": "104"
+        }
+      ],
+      "claims": [
+        {
+          "id": "203"
+        },
+        {
+          "id": "204"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "emailAddress": "bob.johnson@example.com",
+      "phoneNumber": "555-555-5555",
+      "dateOfBirth": "1995-03-10",
+      "policies": [
+        {
+          "id": "105"
+        },
+        {
+          "id": "106"
+        }
+      ],
+      "claims": [
+        {
+          "id": "205"
+        },
+        {
+          "id": "206"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "firstName": "Emily",
+      "lastName": "Davis",
+      "emailAddress": "emily.davis@example.com",
+      "phoneNumber": "555-246-8013",
+      "dateOfBirth": "1992-08-05",
+      "policies": [
+        {
+          "id": "107"
+        },
+        {
+          "id": "108"
+        }
+      ],
+      "claims": [
+        {
+          "id": "207"
+        },
+        {
+          "id": "208"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "firstName": "Michael",
+      "lastName": "Wilson",
+      "emailAddress": "michael.wilson@example.com",
+      "phoneNumber": "555-369-1470",
+      "dateOfBirth": "1987-04-12",
+      "policies": [
+        {
+          "id": "109"
+        },
+        {
+          "id": "110"
+        }
+      ],
+      "claims": [
+        {
+          "id": "209"
+        },
+        {
+          "id": "210"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "firstName": "Jessica",
+      "lastName": "Brown",
+      "emailAddress": "jessica.brown@example.com",
+      "phoneNumber": "555-789-0123",
+      "dateOfBirth": "1998-12-28",
+      "policies": [
+        {
+          "id": "111"
+        },
+        {
+          "id": "112"
+        }
+      ],
+      "claims": [
+        {
+          "id": "211"
+        },
+        {
+          "id": "212"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "firstName": "David",
+      "lastName": "Garcia",
+      "emailAddress": "david.garcia@example.com",
+      "phoneNumber": "555-852-9630",
+      "dateOfBirth": "1980-09-17",
+      "policies": [
+        {
+          "id": "113"
+        },
+        {
+          "id": "114"
+        }
+      ],
+      "claims": [
+        {
+          "id": "213"
+        },
+        {
+          "id": "214"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "firstName": "Ashley",
+      "lastName": "Rodriguez",
+      "emailAddress": "ashley.rodriguez@example.com",
+      "phoneNumber": "555-159-7530",
+      "dateOfBirth": "1993-06-30",
+      "policies": [
+        {
+          "id": "115"
+        },
+        {
+          "id": "116"
+        }
+      ],
+      "claims": [
+        {
+          "id": "215"
+        },
+        {
+          "id": "216"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "firstName": "Christopher",
+      "lastName": "Martinez",
+      "emailAddress": "christopher.martinez@example.com",
+      "phoneNumber": "555-025-8147",
+      "dateOfBirth": "1989-01-08",
+      "policies": [
+        {
+          "id": "117"
+        },
+        {
+          "id": "118"
+        }
+      ],
+      "claims": [
+        {
+          "id": "217"
+        },
+        {
+          "id": "218"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "firstName": "Sarah",
+      "lastName": "Anderson",
+      "emailAddress": "sarah.anderson@example.com",
+      "phoneNumber": "555-741-8520",
+      "dateOfBirth": "1996-11-11",
+      "policies": [
+        {
+          "id": "119"
+        },
+        {
+          "id": "120"
+        }
+      ],
+      "claims": [
+        {
+          "id": "219"
+        },
+        {
+          "id": "220"
+        }
+      ]
+    }
+  ]

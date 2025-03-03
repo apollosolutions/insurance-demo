@@ -1,22 +1,100 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.10", import: ["@key", "@requires"])
+  @link(
+    url: "https://specs.apollo.dev/connect/v0.1"
+    import: ["@source", "@connect"]
+  )
+  @source(
+    name: "policyholderUsersAPI"
+    http: {
+      baseURL: "http://localhost:8080"
+
+    }
+  )
+
 type Policyholder @key(fields: "id") {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
   emailAddress: String
   phoneNumber: String
   dateOfBirth: String!
   policies: [Policy]
+    @connect(
+      source: "policyholderUsersAPI"
+      http: {
+        GET: "/user/{$this.id}/policies"
+      }
+      selection:
+      """
+      id
+      """
+    )
   claims: [Claim]
+    @connect(
+      source: "policyholderUsersAPI"
+      http: {
+        GET: "/user/{$this.id}/claims"
+      }
+      selection:
+      """
+      id
+      """
+    )
 }
 
-type Policy @key(fields: "id") {
+type Policy @key(fields: "id", resolvable: false)  {
   id: ID! 
 }
 
-type Claim @key(fields: "id") {
+type Claim @key(fields: "id",resolvable: false)  {
   id: ID! 
 }
 
 type Query {
   policyholder(id: ID!): Policyholder
-  policyholdersByName(name: String!): [Policyholder!]!
+    @connect(
+      source: "policyholderUsersAPI"
+      http: {
+        GET: "/user/{$args.id}"
+      }
+      selection:
+      """
+      id
+      firstName
+      lastName
+      emailAddress
+      phoneNumber
+      dateOfBirth
+      policies {
+        id
+      }
+      claims {
+        id
+      }
+      """
+      entity: true
+    )
+  policyHolders: [Policyholder]
+    @connect(
+      source: "policyholderUsersAPI"
+      http: {
+        GET: "/users"
+      }
+      selection:
+      """
+      id
+      firstName
+      lastName
+      emailAddress
+      phoneNumber
+      dateOfBirth
+      policies {
+        id
+      }
+      claims {
+        id
+      }
+      """
+    )
 }

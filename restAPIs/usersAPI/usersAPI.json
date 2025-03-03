@@ -1,18 +1,36 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "title": "UsersAPI",
-      "version": "1.0.0"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "UsersAPI",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/user": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    "paths": {
-      "/user": {
-        "get": {
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
+    "/users": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "$ref": "#/components/schemas/user"
                   }
                 }
@@ -20,69 +38,88 @@
             }
           }
         }
-      },
-      "/users": {
-        "get": {
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/user"
-                    }
-                  }
-                }
-              }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user": {
+        "type": "object",
+        "required": [
+          "id",
+          "dateOfBirth",
+          "policies",
+          "claims"
+        ],
+        "properties": {
+          "id": {
+            "example": "3",
+            "type": "string"
+          },
+          "firstName": {
+            "example": "Jane",
+            "type": "string"
+          },
+          "lastName": {
+            "example": "Doe",
+            "type": "string"
+          },
+          "emailAddress": {
+            "example": "janedoe@emailcompany.org",
+            "type": "string"
+          },
+          "phoneNumber": {
+            "example": "4709998877",
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "default": "2011-05-10",
+            "example": "2025-02-28",
+            "type": "string",
+            "format": "date"
+          },
+          "policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/policy"
+            }
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/claim"
             }
           }
         }
-      }
-    },
-    "components": {
-      "schemas": {
-        "user": {
-          "type": "object",
-          "required": [
-            "id",
-            "dateOfBirth"
-          ],
-          "properties": {
-            "id": {
-              "example": "3",
-              "type": "string"
-            },
-            "firstName": {
-              "example": "Jane",
-              "type": "string"
-            },
-            "lastName": {
-              "example": "Doe",
-              "type": "string"
-            },
-            "emailAddress": {
-              "example": "janedoe@emailcompany.org",
-              "type": "string"
-            },
-            "phoneNumber": {
-              "example": "4709998877",
-              "type": "string"
-            },
-            "dateOfBirth": {
-              "default": "2011-05-10",
-              "example": "2025-02-28",
-              "type": "string",
-              "format": "date"
-            }
+      },
+      "policy": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "example": "2",
+            "type": "string"
+          }
+        }
+      },
+      "claim": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "example": "55",
+            "type": "string"
           }
         }
       }
     }
   }
-  
-  
-  
-  
-  
+}
+
+
+
+
