@@ -7,14 +7,14 @@ To build and deploy the container to cloudrun, use the following command:
 
 ```sh
 gcloud builds submit \
-  --tag gcr.io/federation-workshop/rest-api:0.1
+  --tag gcr.io/federation-workshop/policyholderusersrest-api:0.1
 ```
 
 To launch the API from the container, run
 
 ```sh
-gcloud run deploy rest-api \
-  --image gcr.io/federation-workshop/rest-api:0.1 \
+gcloud run deploy policy-holder-users-rest \
+  --image gcr.io/federation-workshop/policyholderusersrest-api:0.1 \
   --platform managed \
   --region us-central1 \
   --allow-unauthenticated \

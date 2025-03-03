@@ -7,7 +7,7 @@ extend schema
   @source(
     name: "policyholderUsersAPI"
     http: {
-      baseURL: "http://localhost:8080"
+      baseURL: "https://policy-holder-users-rest-823878303408.us-central1.run.app/"
 
     }
   )
