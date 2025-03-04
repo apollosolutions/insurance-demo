@@ -20,35 +20,37 @@ type Policyholder @key(fields: "id") {
   phoneNumber: String
   dateOfBirth: String!
   policies: [Policy]
-    @connect(
+  claims: [Claim]
+}
+
+type Policy @key(fields: "id")  {
+  id: ID!
+        @connect(
       source: "policyholderUsersAPI"
       http: {
         GET: "/user/{$this.id}/policies"
       }
       selection:
       """
-      id
+      $.id
       """
-    )
-  claims: [Claim]
-    @connect(
+    ) 
+}
+
+type Claim @key(fields: "id")  {
+  id: ID!
+      @connect(
       source: "policyholderUsersAPI"
       http: {
         GET: "/user/{$this.id}/claims"
       }
       selection:
       """
-      id
+      claims: $.claims {
+        id: $.id
+      }
       """
-    )
-}
-
-type Policy @key(fields: "id", resolvable: false)  {
-  id: ID! 
-}
-
-type Claim @key(fields: "id",resolvable: false)  {
-  id: ID! 
+    ) 
 }
 
 type Query {
@@ -66,11 +68,11 @@ type Query {
       emailAddress
       phoneNumber
       dateOfBirth
-      policies {
-        id
+      policies: $.policies {
+        id: $.id
       }
-      claims {
-        id
+      claims: $.claims {
+        id: $.id
       }
       """
       entity: true
@@ -89,11 +91,11 @@ type Query {
       emailAddress
       phoneNumber
       dateOfBirth
-      policies {
-        id
+      policies: $.policies {
+        id: $.id
       }
-      claims {
-        id
+      claims: $.claims {
+        id: $.id
       }
       """
     )

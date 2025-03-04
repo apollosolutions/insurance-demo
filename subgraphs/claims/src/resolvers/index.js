@@ -187,7 +187,7 @@ const resolvers = {
         claims.filter((claim) => claim.policyholder.id === policyholderId),
     },
     Claim: {
-      __resolveReference: (claimRef) => claims.find((claimRef) => claim.id === claimRef.id),
+      __resolveReference: (claimRef) => claims.find((claim) => claim.id === claimRef.id),
       policy: (claim) => ({ id: claim.policy.id }),
       policyholder: (claim) => ({ id: claim.policyholder.id }),
     },
