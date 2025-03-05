@@ -8,7 +8,6 @@ extend schema
     name: "policyholderUsersAPI"
     http: {
       baseURL: "https://policy-holder-users-rest-823878303408.us-central1.run.app/"
-
     }
   )
 
@@ -32,7 +31,7 @@ type Policy @key(fields: "id")  {
       }
       selection:
       """
-      $.id
+      id
       """
     ) 
 }
@@ -46,9 +45,7 @@ type Claim @key(fields: "id")  {
       }
       selection:
       """
-      claims: $.claims {
-        id: $.id
-      }
+      id
       """
     ) 
 }
@@ -68,11 +65,11 @@ type Query {
       emailAddress
       phoneNumber
       dateOfBirth
-      policies: $.policies {
-        id: $.id
+      policies {
+        id
       }
-      claims: $.claims {
-        id: $.id
+      claims {
+        id
       }
       """
       entity: true
@@ -91,11 +88,11 @@ type Query {
       emailAddress
       phoneNumber
       dateOfBirth
-      policies: $.policies {
-        id: $.id
+      policies {
+        id
       }
-      claims: $.claims {
-        id: $.id
+      claims {
+        id
       }
       """
     )
