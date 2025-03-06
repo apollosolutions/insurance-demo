@@ -1,0 +1,28 @@
+{
+  "name": "policy",
+  "version": "1.0.0",
+  "description": "Policy GraphQL API",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon --ext \"js,graphql\" src/index.js",
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apollosolutions/insurance-demo.git"
+  },
+  "dependencies": {
+    "@apollo/datasource-rest": "^4.3.2",
+    "@apollo/server": "^4.0.0",
+    "@apollo/subgraph": "latest",
+    "graphql": "latest",
+    "graphql-tag": "latest"
+  },
+  "author": "Keith Halsall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apollosolutions/insurance-demo/issues"
+  },
+  "homepage": "https://github.com/apollosolutions/insurance-demo#readme"
+}

@@ -22,32 +22,12 @@ type Policyholder @key(fields: "id") {
   claims: [Claim]
 }
 
-type Policy @key(fields: "id")  {
+type Policy @key(fields: "id", resolvable: false)  {
   id: ID!
-        @connect(
-      source: "policyholderUsersAPI"
-      http: {
-        GET: "/user/{$this.id}/policies"
-      }
-      selection:
-      """
-      id
-      """
-    ) 
 }
 
-type Claim @key(fields: "id")  {
+type Claim @key(fields: "id", resolvable: false)  {
   id: ID!
-      @connect(
-      source: "policyholderUsersAPI"
-      http: {
-        GET: "/user/{$this.id}/claims"
-      }
-      selection:
-      """
-      id
-      """
-    ) 
 }
 
 type Query {

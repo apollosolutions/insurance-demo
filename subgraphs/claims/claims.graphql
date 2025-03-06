@@ -8,7 +8,7 @@ type Claim @key(fields: "id") {
 }
 
 type Policy @key(fields: "id") {
-  id: ID! 
+  id: ID!
 }
 
 type Policyholder @key(fields: "id") {
