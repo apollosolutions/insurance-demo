@@ -15,6 +15,7 @@ async function main() {
       encoding: "utf-8",
     })
   );
+  
   const server = new ApolloServer({
     schema: buildSubgraphSchema({ typeDefs, resolvers }),
   });

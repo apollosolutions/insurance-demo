@@ -17,7 +17,8 @@
     "@apollo/server": "^4.0.0",
     "@apollo/subgraph": "latest",
     "graphql": "latest",
-    "graphql-tag": "latest"
+    "graphql-tag": "latest",
+    "mathjs": "latest"
   },
   "author": "Keith Halsall",
   "license": "ISC",

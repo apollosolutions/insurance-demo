@@ -1,8 +1,10 @@
+scalar Date @specifiedBy(url: "https://specs.insurance.com/scalars/date")
+
 type Claim @key(fields: "id") {
   id: ID!
   status: String!
   amount: Float!
-  dateFiled: String!
+  dateFiled: Date!
   policy: Policy 
   policyholder: Policyholder 
 }
@@ -19,4 +21,13 @@ type Query {
   claim(id: ID!): Claim
   claimsByPolicy(policyId: ID!): [Claim!]!
   claimsByPolicyholder(policyholderId: ID!): [Claim!]!
+}
+
+type Mutation {
+  createClaim(
+    policyId: ID!
+    policyholderId: ID!
+    amount: Float!
+    dateFiled: Date!
+  ): Claim
 }

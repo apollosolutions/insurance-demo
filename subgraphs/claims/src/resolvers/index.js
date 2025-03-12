@@ -1,4 +1,6 @@
-const claims = [
+const { GraphQLScalarType, Kind } = require('graphql');
+
+let claims = [
   {
       "id": "c1",
       "status": "Approved",
@@ -176,9 +178,40 @@ const claims = [
       "policyholder": { "id": "PH10" }
   },
 ];
-  
+
+const dateScalar = new GraphQLScalarType({
+  name: 'Date',
+  description: 'Date custom scalar type',
+  serialize(value) {
+    if (value instanceof Date) {
+      return value.toISOString(); // Convert outgoing Date to integer for JSON
+    }
+    if (typeof value === 'string') {
+      return new Date(value).toISOString(); 
+    }
+    throw Error('GraphQL Date Scalar serializer expected a `Date` object');
+  },
+  parseValue(value) {
+    if (typeof value === 'number') {
+      return new Date(value); // Convert incoming integer to Date
+    }
+    if (typeof value === 'string') {
+      return new Date(value); // Convert incoming string to Date
+    }
+    throw new Error('GraphQL Date Scalar parser expected a `number`');
+  },
+  parseLiteral(ast) {
+    if (ast.kind === Kind.INT) {
+      // Convert hard-coded AST string to integer and then to Date
+      return new Date(parseInt(ast.value, 10));
+    }
+    // Invalid hard-coded value (not an integer)
+    return null;
+  },
+});
   // Resolvers
 const resolvers = {
+    Date: dateScalar,
     Query: {
       claim: (_, { id }) => claims.find((claim) => claim.id === id),
       claimsByPolicy: (_, { policyId }) =>
@@ -186,6 +219,21 @@ const resolvers = {
       claimsByPolicyholder: (_, { policyholderId }) =>
         claims.filter((claim) => claim.policyholder.id === policyholderId),
     },
+    Mutation: {
+        createClaim: (_, { policyId, policyholderId, amount, dateFiled }) => {
+          const newClaim = {
+            id: (Math.floor(Math.random() * 101)).toString(), // Generate a unique claim ID
+            status: "Pending", // Default status for a new claim
+            amount,
+            dateFiled,
+            policy: { id: policyId }, // Associate with policy
+            policyholder: { id: policyholderId }, // Associate with policyholder
+          };
+    
+          claims.push(newClaim); // Add to in-memory storage
+          return newClaim;
+        },
+      },
     Claim: {
       __resolveReference: (claimRef) => claims.find((claim) => claim.id === claimRef.id),
       policy: (claim) => ({ id: claim.policy.id }),

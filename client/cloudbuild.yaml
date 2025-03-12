@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - insurance_generator
+  - --region=us-east1
+  - --source=.
+  - --memory=128Mi
+  - --trigger-topic=traffic_gen
+  - --runtime=python39
